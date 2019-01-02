@@ -3,6 +3,10 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import MapView from 'react-native-maps';
 
 class MapScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Home',
+  };
+
   constructor(props) {
     super(props);
 
