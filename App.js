@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import TabNavigator from './TabNavigator.js';
+import AppNavigator from './AppNavigator';
 
 class App extends Component {
   render() {
-    return <TabNavigator />;
+    return <AppNavigator />;
   }
 }
 

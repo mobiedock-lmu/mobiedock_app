@@ -1,13 +1,23 @@
 // TODO: make an animated splashscreen that shows when the map is loading
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View, StatusBar, TouchableHighlight } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import renderVehicles from './VehicleLocations.js'
+import renderVehicles from '../APIs/VehicleLocations';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { DrawerActions } from 'react-navigation';
 
 class MapScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Home',
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Mobiedock',
+      headerLeft: (
+        <TouchableHighlight onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} underlayColor='#00bcd4'>
+          <Icon name='ios-menu' size={30} color='white'>
+          </Icon>
+        </TouchableHighlight>
+      ),
+    };
   };
 
   constructor(props) {
@@ -44,7 +54,6 @@ class MapScreen extends React.Component {
   }
 
   render() {
-    const {navigate} = this.props.navigation;
     if (this.state.region.latitude && this.state.region.longitude && this.state.markerUpdate) {
       return (
         <MapView
@@ -56,8 +65,12 @@ class MapScreen extends React.Component {
             longitudeDelta: 0.025,
           }}
         >
-          {this.state.markers.map(marker => (
+          <StatusBar
+            barStyle="light-content"
+          />
+          {this.state.markers.map((marker, i) => (
             <Marker
+              key={i}
               coordinate={{latitude: marker.position.latitude, longitude: marker.position.longitude}}
               title={"Title"}
               description={marker.type}
