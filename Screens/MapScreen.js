@@ -1,7 +1,7 @@
 // TODO: make an animated splashscreen that shows when the map is loading
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, StatusBar, TouchableHighlight } from 'react-native';
+import {  StatusBar, StyleSheet, Text, TouchableHighlight, View, Platform } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import renderVehicles from '../APIs/VehicleLocations';
 import Icon from 'react-native-vector-icons/Ionicons';

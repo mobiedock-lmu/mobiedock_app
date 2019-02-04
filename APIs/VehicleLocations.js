@@ -13,6 +13,7 @@ export default function renderVehicles() {
   let availableVehicles = [];
   let url = SHARED_VEHICLE_API_URL + '/location?access_key=' + COORD_API_KEY + '&latitude='
     + LOCATION.lat + '&longitude=' + LOCATION.lon + '&radius_km=' + SEARCH_RADIUS_KM;
+  console.log(url);
   return getRequest(url).then(vehicles => {
     if(!vehicles.features) {
       return;

@@ -1,4 +1,6 @@
 import MapScreen from './Screens/MapScreen';
+import LoginScreen from './Screens/LoginScreen';
+import SignupScreen from './Screens/SignupScreen';
 import { createStackNavigator, createDrawerNavigator, createAppContainer } from 'react-navigation';
 
 // TODO: determine why setting borderColor doesn't affect borderBottomColor
@@ -15,10 +17,12 @@ const defaults = {
 
 const StackNavigator = createStackNavigator(
     {
-      Home: { screen: MapScreen },
+      Login: { screen: LoginScreen },
+      Signup: { screen: SignupScreen },
+      Map: { screen: MapScreen },
     },
     {
-      initialRouteName: 'Home',
+      initialRouteName: 'Login',  // ternary to determine if user has already logged in?
       defaultNavigationOptions: defaults,
     },
 );
