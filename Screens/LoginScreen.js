@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, TouchableOpacity, StyleSheet, View } from 'react-native';
 import { Card, Input, ThemeProvider } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import AnimatedLinearGradient, {presetColors} from 'react-native-animated-linear-gradient';
+import AnimatedLinearGradient from 'react-native-animated-linear-gradient';
+
+GRADIENT_BACKGROUND_COLORS = ['white', '#00bcd4'];
 
 class LoginScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: 'Mobiedock',
+      header: null,
     };
   };
 
   render() {
     return (
       <View style={styles.page}>
-        <AnimatedLinearGradient customColors={['#0EEC65', '#E6B61F', '#00bcd4', '#001F5E', '#8F1FE6']} speed={1000}/>
+        <AnimatedLinearGradient customColors={GRADIENT_BACKGROUND_COLORS} speed={3000}/>
         <ThemeProvider theme={theme}>
-          <Card title='Log In'>
+          <Text style={styles.title}>Mobiedock.</Text>
+          <Card>
             <Input
               placeholder='Email'
               leftIcon={{ type: 'font-awesome', name: 'envelope-o', color: 'white' }}
@@ -28,12 +32,20 @@ class LoginScreen extends React.Component {
               secureTextEntry={ true }
               inputStyle={{ marginLeft: 18 }}
             />
+            <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Map')}>
+              <Text style={styles.buttonText}>Log in</Text>
+            </TouchableOpacity>
           </Card>
-          <Card title='Sign Up'>
+          <Card>
             <Input
               placeholder='Email'
               leftIcon={{ type: 'font-awesome', name: 'envelope-o', color: 'white' }}
               inputStyle={{ marginLeft: 10 }}
+            />
+            <Input
+              placeholder='Username'
+              leftIcon={{ type: 'font-awesome', name: 'user', color: 'white' }}
+              inputStyle={{ marginLeft: 16 }}
             />
             <Input
               placeholder='Password'
@@ -47,6 +59,9 @@ class LoginScreen extends React.Component {
               secureTextEntry={ true }
               inputStyle={{ marginLeft: 18 }}
             />
+            <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Map')}>
+              <Text style={styles.buttonText}>Sign Up</Text>
+            </TouchableOpacity>
           </Card>
         </ThemeProvider>
       </View>
@@ -55,24 +70,29 @@ class LoginScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 40,
+    marginTop: 15,
+    backgroundColor: 'white',
+    borderRadius: 20,
+  },
+  buttonText: {
+    color: '#00bcd4',
+    fontSize: 18,
+  },
   cardWrapper: {
     flex: 0.9,
   },
   cardContainer: {
     backgroundColor: '#00bcd4',
+    borderColor: 'transparent',
+    borderRadius: 20,
   },
   cardTitle: {
     color: 'white',
     marginBottom: 3,
-  },
-  cardDivider: {
-    borderWidth: 1,
-    borderColor: 'white',
-  },
-  page: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   input: {
     color: 'white',
@@ -80,6 +100,20 @@ const styles = StyleSheet.create({
   inputContainer: {
     borderColor: 'white',
   },
+  page: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    color: 'white',
+    fontSize: 36,
+    textAlign: 'center',
+    marginBottom: 30,
+    textShadowColor: '#000000',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10,
+  }
 });
 
 const theme = {
